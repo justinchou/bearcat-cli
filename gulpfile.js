@@ -10,9 +10,11 @@
 
 const Gulp = require('gulp');
 const Mocha = require('gulp-mocha');
+const Eslint = require('gulp-eslint');
 const Through = require('through2');
+const EslintConfig = require('./.eslintrc');
 
-Gulp.task('default', function () {
+Gulp.task('default', ['lint'], function () {
     return Gulp.src('tests/**/*_test.js', {read: false})
         .pipe(Mocha({
             reporter: 'spec',
@@ -36,4 +38,12 @@ Gulp.task('ci', function () {
                 should: require('chai').should()
             }
         }));
+});
+
+Gulp.task('lint', function () {
+    return Gulp.src(['**/*.js', '!node_modules/**'])
+        .pipe(Eslint(EslintConfig))
+        .pipe(Eslint.format())
+        .pipe(Eslint.failAfterError());
+    // .pipe(Eslint.formatEach('compact', process.stderr));
 });
