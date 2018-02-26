@@ -8,9 +8,9 @@
     "bearcat-cli": "./bin/bearcat-cli.js"
   },
   "scripts": {
-    "lint": "eslint .",
-    "test": "mocha --reporter spec --bail --check-leaks test/",
-    "test-ci": "mocha --reporter spec --check-leaks test/"
+    "test": "gulp",
+    "test-ci": "gulp ci",
+    "lint": "eslint ."
   },
   "preferGlobal": true,
   "repository": "https://github.com/justinchou/bearcat-cli",
@@ -46,8 +46,18 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "eslint": "^4.18.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^5.0.0",
     "mocha": "^5.0.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "through2": "^2.0.3",
+    "validate-npm-package-name": "^3.0.0"
   }
 }
