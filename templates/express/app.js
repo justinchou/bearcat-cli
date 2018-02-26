@@ -19,22 +19,22 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use("*", function (req, res, next) {
-    console.log("Request %s url %s baseUrl %s with body [ %j ] query [ %j ] params [ %j ] headers [ %j ]", req.method, req.url, req.baseUrl, req.body, req.query, req.params, req.headers);
+app.use('*', function (req, res, next) {
+    console.log('Request %s url %s baseUrl %s with body [ %j ] query [ %j ] params [ %j ] headers [ %j ]', req.method, req.url, req.baseUrl, req.body, req.query, req.params, req.headers);
     next();
 });
 
 let configPaths = [require.resolve('./context.json')];
 bearcat.createApp(configPaths, {
-    // "NODE_ENV": "",
-    // "BEARCAT_ENV": "",
-    // "NODE_CPATH": "",
-    // "BEARCAT_CPATH": "",
-    // "BEARCAT_LOGGER": "on",
-    // "BEARCAT_HOT": 'off',
-    // "BEARCAT_HPATH": path.join(__dirname, '/hot'),
-    // "BEARCAT_ANNOTATION": "on",
-    // "BEARCAT_GLOBAL": false
+    // NODE_ENV: '',
+    // BEARCAT_ENV: '',
+    // NODE_CPATH: '',
+    // BEARCAT_CPATH: '',
+    // BEARCAT_LOGGER: 'on',
+    // BEARCAT_HOT: 'off',
+    // BEARCAT_HPATH: path.join(__dirname, '/hot'),
+    // BEARCAT_ANNOTATION: 'on',
+    // BEARCAT_GLOBAL: false
 });
 bearcat.start(function () {
     console.log('Bearcat IoC container started');

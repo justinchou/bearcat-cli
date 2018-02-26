@@ -3,12 +3,12 @@
 const Bearcat = require('bearcat');
 
 let Bus = function Bus() {
-    this.$id = "bus";
-    this.$scope = "prototype";
+    this.$id = 'bus';
+    this.$scope = 'prototype';
     this.$parent = 'transport';
 
     this.$engine = null;
-    this.licence = "${default.licence}"
+    this.licence = '${default.licence}';
 };
 
 Bus.prototype.run = function () {

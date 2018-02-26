@@ -1,6 +1,6 @@
 'use strict';
 
-const Bearcat = require('bearcat');
+// const Bearcat = require('bearcat');
 
 let Moto = function Moto(engine, licence) {
     this.engine = engine;
@@ -13,15 +13,15 @@ Moto.prototype.run = function () {
 };
 
 module.exports = {
-    id: "moto",
+    id: 'moto',
     func: Moto,
-    scope: "prototype",
-    parent: "transport",
+    scope: 'prototype',
+    parent: 'transport',
     args: [{
-        name: "engine",
-        ref: "engine"
+        name: 'engine',
+        ref: 'engine'
     }, {
-        name: "licence",
-        type: "String"
+        name: 'licence',
+        type: 'String'
     }]
 };

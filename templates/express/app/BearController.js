@@ -1,7 +1,7 @@
 'use strict';
 
 let BearController = function BearController() {
-    this.$id = "bearController";
+    this.$id = 'bearController';
 };
 
 BearController.prototype.index = function (req, res, next) {

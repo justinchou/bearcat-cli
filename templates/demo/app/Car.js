@@ -3,8 +3,8 @@
 const Bearcat = require('bearcat');
 
 let Car = function Car($engine, licence) {
-    this.$id = "car";
-    this.$scope = "prototype";
+    this.$id = 'car';
+    this.$scope = 'prototype';
     this.$parent = 'transport';
 
     this.engine = $engine;

@@ -2,36 +2,36 @@
 
 'use strict';
 
-const Path      = require('path');
-const Readline  = require('readline');
-const FS        = require('fs');
-const Program   = require('commander');
-const Chalk     = require('chalk');
-const Mkdirp    = require('mkdirp');
+const Path = require('path');
+const Readline = require('readline');
+const FS = require('fs');
+const Program = require('commander');
+const Chalk = require('chalk');
+const Mkdirp = require('mkdirp');
 
-const Utils     = require('../lib/utils');
+const Utils = require('../lib/utils');
 
 // 常量
-const Version   = require('../package.json').version;
-const Templates = ["demo", "express"];
+const Version = require('../package.json').version;
+const Templates = ['demo', 'express'];
 const MODE_0666 = parseInt('0666', 8);
 const MODE_0755 = parseInt('0755', 8);
 
 // 全局变量
-let rootPath    = process.cwd();
-let appName     = 'bearcat-proj';
-let template    = Templates[0];
-let silent      = false;
-let hot         = false;
-let git         = false;
-let force       = false;
+let rootPath = process.cwd();
+let appName = 'bearcat-proj';
+let template = Templates[0];
+let silent = false;
+let hot = false;
+let git = false;
+let force = false;
 
 Program.name('bearcat-cli').usage('[command] [options]').version(Version, '    --version');
 
 Program.command('init').alias('i').usage('[options] [path]').description('初始化项目')
-    .option('-n, --name [value]', '模板名称, 默认为 demo 默认模板, 支持 ' + Templates.join(", "))
+    .option('-n, --name [value]', '模板名称, 默认为 demo 默认模板, 支持 ' + Templates.join(', '))
     .option('-H, --hot', '使用热加载模式, 默认为false')
-    .option('-s, --silent', "使用静默模式, 尽量减少日志")
+    .option('-s, --silent', '使用静默模式, 尽量减少日志')
     .option('    --git', '增加 .gitignore 文件')
     .option('-f, --force', '强制在非空目录下创建工程')
     .action(function (path) {
@@ -39,7 +39,7 @@ Program.command('init').alias('i').usage('[options] [path]').description('初始
         let option = parseOption(arguments);
 
         if (path instanceof Program.Command) {
-            path = ".";
+            path = '.';
         }
 
         appName = createAppName(Path.resolve(path)) || appName;
@@ -47,7 +47,7 @@ Program.command('init').alias('i').usage('[options] [path]').description('初始
 
         template = option.name || Templates[0];
         if (Templates.indexOf(template) === -1) {
-            console.log(Chalk.yellow('没有找到名为 ' + template + ' 的模板, 使用默认模板 ' + Templates[0]));
+            if (!silent) warning('没有找到名为 ' + template + ' 的模板, 使用默认模板 ' + Templates[0]);
             template = Templates[0];
         }
 
@@ -64,14 +64,15 @@ Program.command('debug').alias('dbg').usage('[options]').description('输出本�
         let option = parseOption(arguments);
 
         let config = Utils.getConfig();
-        console.log(config, option.config);
+        if (!silent) console.log(config, option.config);
     });
 
 Program.parse(process.argv);
 
 /**
  * 调用工厂前的检查
- * @param {String} path
+ * @param {String} path 工程代码创建路径
+ * @returns {null} 无
  */
 function createProject(path) {
     emptyDirectory(path, function (empty) {
@@ -81,9 +82,9 @@ function createProject(path) {
             confirm('目标文件夹非空, 是否继续? [y/N] ', function (ok) {
                 if (ok) {
                     process.stdin.destroy();
-                    createApplication(path)
+                    createApplication(path);
                 } else {
-                    console.error(Chalk.red('aborting'));
+                    if (!silent) console.error(Chalk.red('aborting'));
                 }
             });
         }
@@ -93,16 +94,17 @@ function createProject(path) {
 /**
  * app生成工厂
  * @param {String} path 目标路径
+ * @returns {null} 无
  */
 function createApplication(path) {
     mkdir(path, () => {
         switch (template) {
             case Templates[0]:
-            case "demo":
+            case 'demo':
                 createDemoProject(path);
                 break;
             case Templates[1]:
-            case "express":
+            case 'express':
                 createExpressProject(path);
                 break;
             default:
@@ -135,21 +137,21 @@ function createDemoProject(path) {
     if (git) copyTemplate('../shared/gitignore', path + '/.gitignore');
 
     let context = {
-        "name": appName,
-        "scan": []
+        name: appName,
+        scan: []
     };
     let index;
     if (hot) {
-        index = "hot.js";
+        index = 'hot.js';
         mkdir(path + '/hot');
-        context.scan.push("hot");
+        context.scan.push('hot');
     } else {
-        index = "app.js";
+        index = 'app.js';
     }
     copyTemplate(index, path + '/' + index);
 
-    context.scan.push("app");
-    write(path + '/context.json', JSON.stringify(context, null, 2) + "\n");
+    context.scan.push('app');
+    write(path + '/context.json', JSON.stringify(context, null, 2) + '\n');
 
     let pkg = {
         name: appName,
@@ -159,13 +161,13 @@ function createDemoProject(path) {
             start: 'node ' + index
         },
         dependencies: {
-            'bearcat': 'latest'
+            bearcat: 'latest'
         }
     };
-    write(path + '/package.json', JSON.stringify(pkg, null, 2) + "\n");
+    write(path + '/package.json', JSON.stringify(pkg, null, 2) + '\n');
 
     let config = {
-        "name": appName
+        name: appName
     };
     write(path + '/.bearcat.config.json', JSON.stringify(config, null, 2) + '\n');
 }
@@ -199,48 +201,49 @@ function createExpressProject(path) {
     if (git) copyTemplate('../shared/gitignore', path + '/.gitignore');
 
     let context = {
-        "name": appName,
-        "scan": []
+        name: appName,
+        scan: []
     };
     let index;
     if (hot) {
-        index = "hot.js";
+        index = 'hot.js';
         mkdir(path + '/hot');
-        context.scan.push("hot");
+        context.scan.push('hot');
     } else {
-        index = "app.js";
+        index = 'app.js';
     }
     copyTemplate(index, path + '/app.js');
 
-    context.scan.push("app");
-    write(path + '/context.json', JSON.stringify(context, null, 2) + "\n");
+    context.scan.push('app');
+    write(path + '/context.json', JSON.stringify(context, null, 2) + '\n');
 
     let pkg = {
-        "name": appName,
-        "version": "0.0.0",
-        "scripts": {
-            "start": "node ./bin/www"
+        name: appName,
+        version: '0.0.0',
+        scripts: {
+            start: 'node ./bin/www'
         },
-        "dependencies": {
-            "bearcat": "^0.4.29",
-            "body-parser": "~1.17.1",
-            "cookie-parser": "~1.4.3",
-            "express": "~4.15.2",
-            "jade": "~1.11.0"
+        dependencies: {
+            bearcat: '^0.4.29',
+            'body-parser': '~1.17.1',
+            'cookie-parser': '~1.4.3',
+            express: '~4.15.2',
+            jade: '~1.11.0'
         }
     };
-    write(path + '/package.json', JSON.stringify(pkg, null, 2) + "\n");
+    write(path + '/package.json', JSON.stringify(pkg, null, 2) + '\n');
 
     let config = {
-        "name": appName
+        name: appName
     };
     write(path + '/.bearcat.config.json', JSON.stringify(config, null, 2) + '\n');
 }
 
 /**
  * 输出命令行交互, 获取是否允许的交互
- * @param {String} msg
+ * @param {String} msg 弹出提示的信息
  * @param {Function} callback (Boolean)
+ * @returns {null} 无
  */
 function confirm(msg, callback) {
     let rl = Readline.createInterface({
@@ -256,8 +259,9 @@ function confirm(msg, callback) {
 
 /**
  * 从templates目录拷贝文件
- * @param from
- * @param to
+ * @param {String} from 拷贝文件原路径 - 相对于 templates 的相对路径
+ * @param {String} to 目标路径, 需要根据工程创建目录 path 拼接出完整路径
+ * @returns {null} 无
  */
 function copyTemplate(from, to) {
     from = Path.join(__dirname, '../templates/', template, from);
@@ -266,8 +270,8 @@ function copyTemplate(from, to) {
 
 /**
  * 基于各种名称转化成指定格式的app格式
- * @param {String} name
- * @returns {string}
+ * @param {String} name 转化前的 app 名称
+ * @returns {string} 转化后的 app 名称
  */
 function createAppName(name) {
     return Path.basename(name)
@@ -278,56 +282,60 @@ function createAppName(name) {
 
 /**
  * 判断文件夹是否为空
- * @param {String} path
+ * @param {String} path 文件夹路径
  * @param {Function} fn (Boolean)
+ * @returns {null} 无
  */
 function emptyDirectory(path, fn) {
     FS.readdir(path, function (err, files) {
         if (err && err.code !== 'ENOENT') throw err;
-        fn(!files || !files.length)
+        fn(!files || !files.length);
     });
 }
 
 /**
  * 创建文件夹, 封装调用 mkdirp
- * @param {String} path
+ * @param {String} path 文件夹路径
  * @param {Function=} fn (EMPTY_PARAMS)
+ * @returns {null} 无
  */
 function mkdir(path, fn) {
     Mkdirp(path, MODE_0755, function (err) {
         if (err) throw err;
-        console.log(Chalk.green('   创建文件夹 : ') + path);
+        if (!silent) console.log(Chalk.green('   创建文件夹 : ') + path);
         fn && fn();
     });
 }
 
 /**
  * 输出Warning数据
- * @param {String} message
+ * @param {String} message 输出的内容
+ * @returns {null} 无
  */
 function warning(message) {
     console.error();
     message.split('\n').forEach(function (line) {
-        console.error('  warning: %s', line);
+        console.error(Chalk.red('  warning: ' + line));
     });
     console.error();
 }
 
 /**
  * 将字符串数据写入文件
- * @param {String} path
- * @param {String} str
- * @param {Number=} mode
+ * @param {String} path 目标文件路径
+ * @param {String} str 需要写入的内容
+ * @param {Number=} mode 文件rwx权限
+ * @returns {null} 无
  */
 function write(path, str, mode) {
     FS.writeFileSync(path, str, {mode: mode || MODE_0666});
-    console.log(Chalk.green('   创建文件   : ') + path);
+    if (!silent) console.log(Chalk.green('   创建文件   : ') + path);
 }
 
 /**
  * 解析action回调后获取的数据
- * @param {Object} args
- * @returns {Command}
+ * @param {Object} args 从action回调得到的arguments
+ * @returns {Command} Commander对象
  */
 function parseOption(args) {
     // 防止传入多个没有 --xx 的参数
@@ -343,10 +351,11 @@ function parseOption(args) {
         }
     }
 
-    console.log();
-    console.log(Chalk.green("   传入参数为:  ") + arr.join('  '));
-    console.log(Chalk.green("   开关选项为:  ") + JSON.stringify(parmas));
-    console.log();
+    if (!silent) console.log();
+    if (!silent) console.log(Chalk.green('   运行环境为:  ') + rootPath);
+    if (!silent) console.log(Chalk.green('   传入参数为:  ') + arr.join('  '));
+    if (!silent) console.log(Chalk.green('   开关选项为:  ') + JSON.stringify(parmas));
+    if (!silent) console.log();
 
     return option;
 }

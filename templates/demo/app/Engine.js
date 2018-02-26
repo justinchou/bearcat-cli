@@ -3,7 +3,7 @@
 const Bearcat = require('bearcat');
 
 let Engine = function Engine() {
-    this.$id = "engine";
+    this.$id = 'engine';
     this.$scope = 'prototype';
 };
 

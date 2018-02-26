@@ -1,6 +1,6 @@
 'use strict';
 
-const Bearcat = require('bearcat');
+// const Bearcat = require('bearcat');
 
 let Truck = function Truck() {
     this.engine = null;
@@ -13,15 +13,15 @@ Truck.prototype.run = function () {
 };
 
 module.exports = {
-    id: "truck",
+    id: 'truck',
     func: Truck,
-    scope: "prototype",
-    parent: "transport",
+    scope: 'prototype',
+    parent: 'transport',
     props: [{
-        name: "engine",
-        ref: "engine"
+        name: 'engine',
+        ref: 'engine'
     }, {
-        name: "licence",
-        value: "${default.licence}"
+        name: 'licence',
+        value: '${default.licence}'
     }]
 };

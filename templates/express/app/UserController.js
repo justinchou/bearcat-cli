@@ -1,7 +1,7 @@
 'use strict';
 
 let UserController = function UserController() {
-    this.$id = "userController";
+    this.$id = 'userController';
 };
 
 UserController.prototype.index = function(req, res, next) {

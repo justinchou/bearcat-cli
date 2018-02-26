@@ -3,7 +3,7 @@
 const Bearcat = require('bearcat');
 
 let Transport = function Transport() {
-    this.$id = "transport";
+    this.$id = 'transport';
     this.$abstract = true;
 };
 

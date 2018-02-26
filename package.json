@@ -7,6 +7,11 @@
     "bearcat": "./bin/bearcat-cli.js",
     "bearcat-cli": "./bin/bearcat-cli.js"
   },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha --reporter spec --bail --check-leaks test/",
+    "test-ci": "mocha --reporter spec --check-leaks test/"
+  },
   "preferGlobal": true,
   "repository": "https://github.com/justinchou/bearcat-cli",
   "author": "JustinChow <zhou78620051@126.com>",
@@ -25,7 +30,7 @@
     "api"
   ],
   "engines": {
-    "node": ">= 4.6"
+    "node": ">= 4.2.0"
   },
   "files": [
     "LICENSE",
@@ -39,5 +44,10 @@
     "chalk": "^2.3.1",
     "commander": "^2.14.1",
     "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.1",
+    "mocha": "^5.0.1",
+    "supertest": "^3.0.0"
   }
 }
