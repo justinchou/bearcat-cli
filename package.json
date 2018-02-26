@@ -7,10 +7,34 @@
     "bearcat": "./bin/bearcat-cli.js",
     "bearcat-cli": "./bin/bearcat-cli.js"
   },
+  "preferGlobal": true,
   "repository": "https://github.com/justinchou/bearcat-cli",
-  "author": "JustinChou <zhou78620051@126.com>",
+  "author": "JustinChow <zhou78620051@126.com>",
   "contributors": [],
   "license": "MIT",
+  "keywords": [
+    "bearcat",
+    "command",
+    "framework",
+    "express",
+    "web",
+    "rest",
+    "restful",
+    "router",
+    "app",
+    "api"
+  ],
+  "engines": {
+    "node": ">= 4.6"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "yarn.lock",
+    "bin/",
+    "lib/",
+    "templates/"
+  ],
   "dependencies": {
     "chalk": "^2.3.1",
     "commander": "^2.14.1",
