@@ -25,11 +25,11 @@ Gulp.task('default', function () {
         }));
 });
 
-Gulp.task("ci", function () {
+Gulp.task('ci', function () {
     return Gulp.src('tests/**/*_test.js', {read: false})
         .pipe(Mocha({
             reporter: 'xunit',
-            reporterOptions: {output: "xunit.xml", suiteName: "Bearcat Cli"},
+            reporterOptions: {output: 'xunit.xml', suiteName: 'Bearcat Cli'},
             checkLeaks: true,
 
             globals: {
