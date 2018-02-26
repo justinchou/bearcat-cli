@@ -83,7 +83,7 @@ $ npm start
 
 [express-logo]: https://bearcatjs.cn/images/logo.png
 
-[bearcat-cli-image]: https://img.shields.io/badge/bearcat--cli-v0.0.3-brightgreen.svg
+[bearcat-cli-image]: https://img.shields.io/badge/bearcat--cli-v0.0.5-brightgreen.svg
 [bearcat-cli-url]: https://npmjs.org/package/bearcat-cli
 
 [npm-image]: https://img.shields.io/npm/v/bearcat-cli.svg
