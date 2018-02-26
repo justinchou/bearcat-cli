@@ -1,13 +1,5 @@
 #!/usr/bin/env node
 
-/**
- * Created by bearcat-cli.
- * File: init.js
- * User: justin
- * Date: 25/2/2018
- * Time: 12:59
- */
-
 'use strict';
 
 const Path      = require('path');
@@ -55,6 +47,7 @@ Program.command('init').alias('i').usage('[options] [path]').description('初始
 
         template = option.name || Templates[0];
         if (Templates.indexOf(template) === -1) {
+            console.log(Chalk.yellow('没有找到名为 ' + template + ' 的模板, 使用默认模板 ' + Templates[0]));
             template = Templates[0];
         }
 
@@ -110,7 +103,7 @@ function createApplication(path) {
                 break;
             case Templates[1]:
             case "express":
-
+                createExpressProject(path);
                 break;
             default:
                 break;
@@ -167,6 +160,73 @@ function createDemoProject(path) {
         },
         dependencies: {
             'bearcat': 'latest'
+        }
+    };
+    write(path + '/package.json', JSON.stringify(pkg, null, 2) + "\n");
+
+    let config = {
+        "name": appName
+    };
+    write(path + '/.bearcat.config.json', JSON.stringify(config, null, 2) + '\n');
+}
+
+// Express Project
+function createExpressProject(path) {
+    mkdir(path + '/app', () => {
+        copyTemplate('/app/BearController.js', path + '/app/BearController.js');
+        copyTemplate('/app/UserController.js', path + '/app/UserController.js');
+    });
+    mkdir(path + '/bin', () => {
+        copyTemplate('/bin/www', path + '/bin/www');
+    });
+    mkdir(path + '/public', () => {
+        mkdir(path + '/public/images');
+        mkdir(path + '/public/javascripts');
+        mkdir(path + '/public/stylesheets', () => {
+            copyTemplate('/public/stylesheets/style.css', path + '/public/stylesheets/style.css');
+        });
+    });
+    mkdir(path + '/routes', () => {
+        copyTemplate('/routes/index.js', path + '/routes/index.js');
+        copyTemplate('/routes/users.js', path + '/routes/users.js');
+    });
+    mkdir(path + '/views', () => {
+        copyTemplate('/views/error.jade', path + '/views/error.jade');
+        copyTemplate('/views/index.jade', path + '/views/index.jade');
+        copyTemplate('/views/layout.jade', path + '/views/layout.jade');
+    });
+
+    if (git) copyTemplate('../shared/gitignore', path + '/.gitignore');
+
+    let context = {
+        "name": appName,
+        "scan": []
+    };
+    let index;
+    if (hot) {
+        index = "hot.js";
+        mkdir(path + '/hot');
+        context.scan.push("hot");
+    } else {
+        index = "app.js";
+    }
+    copyTemplate(index, path + '/app.js');
+
+    context.scan.push("app");
+    write(path + '/context.json', JSON.stringify(context, null, 2) + "\n");
+
+    let pkg = {
+        "name": appName,
+        "version": "0.0.0",
+        "scripts": {
+            "start": "node ./bin/www"
+        },
+        "dependencies": {
+            "bearcat": "^0.4.29",
+            "body-parser": "~1.17.1",
+            "cookie-parser": "~1.4.3",
+            "express": "~4.15.2",
+            "jade": "~1.11.0"
         }
     };
     write(path + '/package.json', JSON.stringify(pkg, null, 2) + "\n");
