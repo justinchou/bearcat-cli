@@ -1,11 +1,3 @@
-/**
- * Created by bearcat-cli.
- * File: package_test.js
- * User: justin
- * Date: 27/2/2018
- * Time: 02:17
- */
-
 'use strict';
 
 let validate = require('validate-npm-package-name');

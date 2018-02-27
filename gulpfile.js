@@ -1,11 +1,3 @@
-/**
- * Created by bearcat-cli.
- * File: gulpfile.js
- * User: justin
- * Date: 27/2/2018
- * Time: 02:21
- */
-
 'use strict';
 
 const Gulp = require('gulp');

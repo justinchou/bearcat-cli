@@ -1,7 +1,7 @@
 'use strict';
 
 const Path    = require('path');
-const Bearcat = require('bearcat');
+const Bearcat = require('bearcatjs');
 
 let configPaths = [require.resolve('./context.json')];
 Bearcat.createApp(configPaths, {
@@ -13,7 +13,7 @@ Bearcat.createApp(configPaths, {
     BEARCAT_HOT: 'off',
     BEARCAT_HPATH: Path.join(__dirname, '/app'),
     // BEARCAT_ANNOTATION: 'on',
-    // BEARCAT_GLOBAL: false
+    BEARCAT_GLOBAL: true
 });
 
 Bearcat.on('reload', function () {

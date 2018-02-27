@@ -1,4 +1,4 @@
 {
-  name: "bearcat-proj",
-  scan: ["app"]
+  "name": "bearcat-proj",
+  "scan": ["app"]
 }
