@@ -1,7 +1,5 @@
 'use strict';
 
-const Bearcat = require('bearcat');
-
 let Car = function Car($engine, licence) {
     this.$id = 'car';
     this.$scope = 'prototype';
@@ -16,4 +14,4 @@ Car.prototype.run = function () {
     console.log('please show me your **  car  ** licence, my licence is [ %s ]', this.licence);
 };
 
-Bearcat.module(Car, typeof module !== 'undefined' ? module : {});
+bearcat.module(Car, typeof module !== 'undefined' ? module : {});

@@ -1,7 +1,5 @@
 'use strict';
 
-// const Bearcat = require('bearcat');
-
 let Truck = function Truck() {
     this.engine = null;
     this.licence = null;
@@ -12,7 +10,7 @@ Truck.prototype.run = function () {
     console.log('please show me your ** truck ** licence, my licence is [ %s ]', this.licence);
 };
 
-module.exports = {
+bearcat.meta({
     id: 'truck',
     func: Truck,
     scope: 'prototype',
@@ -24,4 +22,4 @@ module.exports = {
         name: 'licence',
         value: '${default.licence}'
     }]
-};
+}, typeof module !== 'undefined' ? module : {});

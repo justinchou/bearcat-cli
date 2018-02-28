@@ -1,11 +1,11 @@
 {
-  "name": "bearcat-cli",
+  "name": "bearcatjs-cli",
   "version": "1.0.5",
   "description": "using bearcat as shell command to handle a list of problems just as express-generator :)",
-  "main": "bin/bearcat-cli.js",
+  "main": "bin/bearcatjs-cli.js",
   "bin": {
-    "bearcat": "./bin/bearcat-cli.js",
-    "bearcat-cli": "./bin/bearcat-cli.js"
+    "bearcatjs": "./bin/bearcatjs-cli.js",
+    "bearcatjs-cli": "./bin/bearcatjs-cli.js"
   },
   "scripts": {
     "test": "gulp",
@@ -13,7 +13,7 @@
     "lint": "eslint ."
   },
   "preferGlobal": true,
-  "repository": "https://github.com/justinchou/bearcat-cli",
+  "repository": "https://github.com/justinchou/bearcatjs-cli",
   "author": "JustinChow <zhou78620051@126.com>",
   "contributors": [],
   "license": "MIT",
@@ -33,6 +33,8 @@
     "node": ">= 4.2.0"
   },
   "files": [
+    ".eslintrc.js",
+    "gulpfile.js",
     "LICENSE",
     "README.md",
     "yarn.lock",
@@ -41,6 +43,7 @@
     "templates/"
   ],
   "dependencies": {
+    "bearcatjs": "^1.0.5",
     "chalk": "^2.3.1",
     "commander": "^2.14.1",
     "mkdirp": "^0.5.1"

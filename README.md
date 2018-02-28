@@ -1,11 +1,11 @@
-Bearcat Cli 命令行工具
+BearcatJS Cli 命令行工具
 ===
 
 [![BearCat Logo][express-logo]](http://bearcatjs.cn/)
 
-[Bearcat Cli](https://www.npmjs.com/package/bearcat-cli) 是用于自动化生成基于 [Bearcat](https://www.npmjs.com/package/bearcat) 框架的初始化代码的工具.
+[Bearcat Cli](https://www.npmjs.com/package/bearcatjs-cli) 是用于自动化生成基于 [Bearcat](https://www.npmjs.com/package/bearcat) 框架的初始化代码的工具.
 
-[![BEARCAT Version][bearcat-cli-image]][bearcat-cli-url]
+[![BEARCAT Version][bearcatjs-cli-image]][bearcatjs-cli-url]
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 
@@ -14,24 +14,24 @@ Bearcat Cli 命令行工具
 通过npm管理
 
 ```bash
-npm install -g bearcat-cli
+npm install -g bearcatjs-cli
 ```
 
 如果你习惯了yarn, 那么:
 
 ```bash
-yarn global add bearcat-cli
+yarn global add bearcatjs-cli
 ```
 
 
 ## 快速开始
 
-最快速的开始Bearcat的方式, 就是执行 `bearcat-cli` 命令行工具, 生成一个可以运行的程序:
+最快速的开始Bearcat的方式, 就是执行 `bearcatjs-cli` 命令行工具, 生成一个可以运行的程序:
 
 创建Demo应用:
 
 ```bash
-bearcat-cli init demo-app  && cd demo-app
+bearcatjs-cli init demo-app  && cd demo-app
 ```
 
 使用npm安装依赖:
@@ -50,7 +50,7 @@ $ npm start
 
 工具还可以根据其他选项生成更自定义化的工程:
 
-    Usage: bearcat-cli [command] [options]
+    Usage: bearcatjs-cli [command] [options]
     
     Options:
   
@@ -83,11 +83,11 @@ $ npm start
 
 [express-logo]: https://bearcatjs.cn/images/logo.png
 
-[bearcat-cli-image]: https://img.shields.io/badge/bearcat--cli-v0.0.5-brightgreen.svg
-[bearcat-cli-url]: https://npmjs.org/package/bearcat-cli
+[bearcatjs-cli-image]: https://img.shields.io/badge/bearcatjs--cli-v1.0.5-brightgreen.svg
+[bearcatjs-cli-url]: https://npmjs.org/package/bearcatjs-cli
 
-[npm-image]: https://img.shields.io/npm/v/bearcat-cli.svg
-[npm-url]: https://npmjs.org/package/bearcat-cli
+[npm-image]: https://img.shields.io/npm/v/bearcatjs-cli.svg
+[npm-url]: https://npmjs.org/package/bearcatjs-cli
 
-[downloads-image]: https://img.shields.io/npm/dm/bearcat-cli.svg
-[downloads-url]: https://npmjs.org/package/bearcat-cli
+[downloads-image]: https://img.shields.io/npm/dm/bearcatjs-cli.svg
+[downloads-url]: https://npmjs.org/package/bearcatjs-cli
