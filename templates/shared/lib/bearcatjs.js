@@ -11409,11 +11409,13 @@ function hasOwnProperty(obj, prop) {
 },{"./support/isBuffer":51,"_process":49,"inherits":50}],53:[function(require,module,exports){
 module.exports={
   "name": "bearcatjs",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Magic, self-described javaScript objects build up elastic, maintainable front-backend javaScript applications",
   "main": "index.js",
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "browser": "grunt browser_test",
+    "build": "grunt package"
   },
   "repository": {
     "type": "git",
