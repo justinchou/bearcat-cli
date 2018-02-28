@@ -1,6 +1,6 @@
 {
   "name": "bearcatjs-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "using bearcat as shell command to handle a list of problems just as express-generator :)",
   "main": "bin/bearcatjs-cli.js",
   "bin": {
