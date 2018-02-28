@@ -257,9 +257,9 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-bearcatjs@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/bearcatjs/-/bearcatjs-1.0.5.tgz#7cc54b241ab00a6e2969d69271502fbcc429ff13"
+bearcatjs@latest:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/bearcatjs/-/bearcatjs-1.0.6.tgz#07b8658f24dcb0e2320ca5a4aa96e800e68e708a"
   dependencies:
     chokidar "^2.0.2"
     commander "^2.14.1"
