@@ -184,6 +184,7 @@ function createDemoProject(path) {
     });
     mkdir(path + '/config', () => {
         mkdir(path + '/config/dev', () => {
+            copyTemplate('/config/dev/default.json', path + '/config/dev/default.json');
             copyTemplate('/config/dev/bus.json', path + '/config/dev/bus.json');
             copyTemplate('/config/dev/truck.json', path + '/config/dev/truck.json');
         });

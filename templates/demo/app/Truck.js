@@ -20,6 +20,6 @@ bearcat.meta({
         ref: 'engine'
     }, {
         name: 'licence',
-        value: '${default.licence}'
+        value: '${truck.licence}'
     }]
 }, typeof module !== 'undefined' ? module : {});

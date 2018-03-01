@@ -6,7 +6,7 @@ let Bus = function Bus() {
     this.$parent = 'transport';
 
     this.$engine = null;
-    this.licence = '${default.licence}';
+    this.licence = '${bus.licence}';
 };
 
 Bus.prototype.run = function () {
