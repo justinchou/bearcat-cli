@@ -22,7 +22,7 @@ const Templates = ['demo', 'express'];
 
 // 全局变量
 let rootPath = process.cwd();
-let appName = 'bearcat-proj';
+let appName = 'bearcatjs-proj';
 let template = Templates[0];
 let params = {};
 
@@ -31,7 +31,7 @@ let propertiesLoader = new PropertiesLoader();
 
 let defaultCpath = rootPath + '/context.json';
 let defaultConfigPath = rootPath + '/config';
-let defaultOutputFile = 'bearcat-bootstrap.js';
+let defaultOutputFile = 'bearcatjs-bootstrap.js';
 let defaultEnv = 'dev';
 
 global.Bearcat = Bearcat;
@@ -98,8 +98,8 @@ Program.command('init').alias('i').usage('[options] [path]').description('初始
 
 Program.command('generate')
     .alias('g')
-    .description('给前端浏览器自动生成 bearcat-bootstrap.js 文件')
-    .option('-o, --output [value]', '自定义 bearcat-bootstrap.js 文件名')
+    .description('给前端浏览器自动生成 bearcatjs-bootstrap.js 文件')
+    .option('-o, --output [value]', '自定义 bearcatjs-bootstrap.js 文件名')
     .option('-c, --context [value]', '手动指定 context.json 文件路径')
     .option('-C, --config [value]', '指定 config 文件夹')
     .option('-e, --env [value]', '指定 config env 环境')
