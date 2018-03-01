@@ -8,4 +8,4 @@ UserController.prototype.index = function(req, res, next) {
     res.send('respond with a resource');
 };
 
-module.exports = UserController;
+bearcat.module(UserController, typeof module !== 'undefined' ? module : {});

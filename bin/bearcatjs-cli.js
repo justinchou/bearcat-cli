@@ -232,6 +232,7 @@ function createDemoProject(path) {
 // Express Project
 function createExpressProject(path) {
     mkdir(path + '/app', () => {
+        copyTemplate('/app/BearLogger.js', path + '/app/BearLogger.js');
         copyTemplate('/app/BearController.js', path + '/app/BearController.js');
         copyTemplate('/app/UserController.js', path + '/app/UserController.js');
     });
@@ -280,6 +281,7 @@ function createExpressProject(path) {
         scripts: {
             start: 'node ./bin/www'
         },
+        license: "MIT",
         dependencies: {
             bearcatjs: '*',
             'body-parser': '~1.17.1',
