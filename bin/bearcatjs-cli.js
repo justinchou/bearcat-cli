@@ -168,16 +168,23 @@ function createApplication(path) {
 
 // Demo Project
 function createDemoProject(path) {
-    mkdir(path + '/app', () => {
-        copyTemplate('/app/Engine.js', path + '/app/Engine.js');
+    mkdir(path + '/garage', () => {
+        copyTemplate('/garage/Aspect.js', path + '/garage/Aspect.js');
 
-        copyTemplate('/app/Transport.js', path + '/app/Transport.js');
+        copyTemplate('/garage/Engine.js', path + '/garage/Engine.js');
 
-        copyTemplate('/app/Car.js', path + '/app/Car.js');
-        copyTemplate('/app/Moto.js', path + '/app/Moto.js');
+        copyTemplate('/garage/Transport.js', path + '/garage/Transport.js');
 
-        copyTemplate('/app/Bus.js', path + '/app/Bus.js');
-        copyTemplate('/app/Truck.js', path + '/app/Truck.js');
+        copyTemplate('/garage/Car.js', path + '/garage/Car.js');
+        copyTemplate('/garage/Moto.js', path + '/garage/Moto.js');
+
+        copyTemplate('/garage/Bus.js', path + '/garage/Bus.js');
+        copyTemplate('/garage/Truck.js', path + '/garage/Truck.js');
+    });
+    mkdir(path + '/producer', () => {
+        copyTemplate('/producer/Aspection.js', path + '/producer/Aspection.js');
+        copyTemplate('/producer/CanProduceAop.js', path + '/producer/CanProduceAop.js');
+        copyTemplate('/producer/Producer.js', path + '/producer/Producer.js');
     });
     mkdir(path + '/lib', () => {
         copyTemplate('../shared/lib/bearcatjs.js', path + '/lib/bearcatjs.js');
@@ -208,13 +215,14 @@ function createDemoProject(path) {
     copyTemplate(index, path + '/' + index);
     copyTemplate('/app.html', path + '/app.html');
 
-    context.scan.push('app');
+    context.scan.push('garage');
+    context.scan.push('producer');
     Utils.write(path + '/context.json', JSON.stringify(context, null, 2) + '\n');
 
     let pkg = {
         name: appName,
         version: '0.0.0',
-        private: true,
+        licence: "MIT",
         scripts: {
             start: 'node ' + index
         },

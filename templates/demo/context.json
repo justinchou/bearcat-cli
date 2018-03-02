@@ -1,4 +1,4 @@
 {
   "name": "bearcatjs-proj",
-  "scan": ["app"]
+  "scan": ["garage", "producer"]
 }

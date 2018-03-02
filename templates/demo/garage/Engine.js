@@ -5,8 +5,13 @@ let Engine = function Engine() {
     this.$scope = 'prototype';
 };
 
-Engine.prototype.run = function () {
+function nooooop() {
+
+}
+
+Engine.prototype.run = function (next) {
     console.log('engine run...');
+    next ? next() : nooooop();
 };
 
 bearcat.module(Engine, typeof module !== 'undefined' ? module : {});

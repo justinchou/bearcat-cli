@@ -2,6 +2,7 @@
 
 let Transport = function Transport() {
     this.$id = 'transport';
+    // this.$proxy  = false;
     this.$abstract = true;
 };
 

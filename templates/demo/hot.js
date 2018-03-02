@@ -1,10 +1,10 @@
 'use strict';
 
 const Path    = require('path');
-const Bearcat = require('bearcatjs');
+const bearcat = require('bearcatjs');
 
 let configPaths = [require.resolve('./context.json')];
-Bearcat.createApp(configPaths, {
+bearcat.createApp(configPaths, {
     // NODE_ENV: '',
     // BEARCAT_ENV: '',
     // NODE_CPATH: '',
@@ -16,21 +16,37 @@ Bearcat.createApp(configPaths, {
     BEARCAT_GLOBAL: true
 });
 
-Bearcat.on('reload', function () {
+bearcat.on('reload', function () {
     // console.log('reload occured...');
 });
-Bearcat.start(function () {
+
+bearcat.start(function () {
     // console.log('bearcat ioc container started...');
 
-    let car = Bearcat.getBean('car', '辽B345230');
+    let car = bearcat.getBean('car', '辽B345230');
     car.run();
 
-    let bus = Bearcat.getBean('bus');
+    console.log();
+
+    let bus = bearcat.getBean('bus');
     bus.run();
 
-    let moto = Bearcat.getBean('moto', '辽A374913');
+    console.log();
+
+    let moto = bearcat.getBean('moto', '辽A374913');
     moto.run();
 
-    let truck = Bearcat.getBean('truck');
+    console.log();
+
+    let truck = bearcat.getBean('truck');
     truck.run();
+
+    console.log();
+    console.log();
+    console.log();
+
+    let producer = bearcat.getBean('producer');
+    producer.produceCan('fish', (err, data) => {
+        console.log('Caller CB [ %j ] err:', data, err);
+    });
 });
