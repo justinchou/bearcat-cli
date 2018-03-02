@@ -18,7 +18,7 @@ Bearcat.createApp();
 // 常量
 process.env.LOADER_BIN = 'on';
 const Version = require('../package.json').version;
-const Templates = ['demo', 'express'];
+const Templates = ['empty', 'demo', 'express'];
 
 // 全局变量
 let rootPath = process.cwd();
@@ -66,7 +66,7 @@ function mkdir(path, fn) {
 Program.name('bearcatjs-cli').alias('bearcatjs').usage('[command] [options]').version(Version, '    --version');
 
 Program.command('init').alias('i').usage('[options] [path]').description('初始化项目')
-    .option('-t, --template [value]', '模板名称, 默认为 demo 默认模板, 支持 ' + Templates.join(', '))
+    .option('-t, --template [value]', '模板名称, 默认为 empty 默认模板, 支持 ' + Templates.join(', '))
     .option('-H, --hot', '使用热加载模式, 默认为false')
     .option('-s, --silent', '使用静默模式, 尽量减少日志')
     .option('    --git', '增加 .gitignore 文件')
@@ -153,10 +153,14 @@ function createApplication(path) {
     mkdir(path, () => {
         switch (template) {
             case Templates[0]:
+            case 'empty':
+                createEmptyProject(path);
+                break;
+            case Templates[1]:
             case 'demo':
                 createDemoProject(path);
                 break;
-            case Templates[1]:
+            case Templates[2]:
             case 'express':
                 createExpressProject(path);
                 break;
@@ -164,6 +168,40 @@ function createApplication(path) {
                 break;
         }
     });
+}
+
+// Empty Project
+function createEmptyProject(path) {
+    mkdir(path + '/app');
+    mkdir(path + '/config/dev', () => {
+        copyTemplate('/config/dev/default.json', path + '/config/dev/default.json');
+    });
+    copyTemplate('app.js', path + '/app.js');
+
+    let context = {
+        name: appName,
+        scan: []
+    };
+    context.scan.push('app');
+    Utils.write(path + '/context.json', JSON.stringify(context, null, 2) + '\n');
+
+    let pkg = {
+        name: appName,
+        version: '0.0.0',
+        licence: "MIT",
+        scripts: {
+            start: 'node app.js'
+        },
+        dependencies: {
+            bearcatjs: 'latest'
+        }
+    };
+    Utils.write(path + '/package.json', JSON.stringify(pkg, null, 2) + '\n');
+
+    let config = {
+        name: appName
+    };
+    Utils.write(path + '/.bearcatjs.config.json', JSON.stringify(config, null, 2) + '\n');
 }
 
 // Demo Project
