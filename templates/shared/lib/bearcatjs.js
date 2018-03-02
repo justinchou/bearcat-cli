@@ -4792,7 +4792,7 @@ ApplicationContext.prototype.refresh = function(cb) {
 	// Try Async loading for dependencies
 	self.tryAsyncLoading(function() {
 
-		// Try loading from bearcatjs-bootstrap.js for dependencies
+		// Try loading from bearcat-bootstrap.js for dependencies
 		self.tryBootStrapLoading();
 
 		// Prepare beanFactory for this context
@@ -4965,7 +4965,7 @@ ApplicationContext.prototype.doAsyncLoading = function(cb) {
 }
 
 /**
- * ApplicationContext try loading script files from bearcatjs-bootstrap.js when in cocos2d-js jsb env.
+ * ApplicationContext try loading script files from bearcat-bootstrap.js when in cocos2d-js jsb env.
  *
  * @api private
  */
@@ -8670,7 +8670,7 @@ MetaUtil.resolvePrototypeAnnotation = function(func) {
 			if (funcPropsArray && Utils.checkArray(funcPropsArray)) {
 				t = "var FuncMetaProps = function() {" + EOL;
 				for (var i = 0; i < funcPropsArray.length; i++) {
-					t += (funcPropsArray[i].replace(/var\s*/, "this.") + EOL);
+					t += (funcPropsArray[i].replace(/var|let|const\s*/, "this.") + EOL);
 				}
 				t += "}";
 			}
