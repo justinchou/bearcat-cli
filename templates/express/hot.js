@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const bearcat = require('bearcat');
+const bearcat = require('bearcatjs');
 
 let app = express();
 
@@ -34,7 +34,7 @@ bearcat.createApp(configPaths, {
     BEARCAT_HOT: 'on',
     BEARCAT_HPATH: path.join(__dirname, '/hot'),
     // BEARCAT_ANNOTATION: 'on',
-    // BEARCAT_GLOBAL: false
+    BEARCAT_GLOBAL: true
 });
 bearcat.start(function () {
     console.log('Bearcat IoC container started');

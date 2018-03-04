@@ -8,8 +8,6 @@
 
 'use strict';
 
-//const bearcat = require('bearcat');
-
 let Aspect = function Aspect() {
     this.$id = 'aspect';
     // this.$scope  = 'prototype';

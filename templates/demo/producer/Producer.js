@@ -8,9 +8,6 @@
 
 'use strict';
 
-
-//const bearcat = require('bearcatjs');
-
 let Producer = function Producer() {
     this.$id = 'producer';
     // this.$scope  = 'prototype';

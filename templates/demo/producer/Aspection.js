@@ -8,9 +8,6 @@
 
 'use strict';
 
-
-//const bearcat = require('bearcatjs');
-
 let Aspection = function Aspection() {
     this.$id = 'aspection';
     // this.$scope  = 'prototype';

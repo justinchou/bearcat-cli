@@ -8,9 +8,6 @@
 
 'use strict';
 
-
-//const bearcat = require('bearcat');
-
 let CanProduceAop = function CanProduceAop() {
     this.$id = 'canProduceAop';
     // this.$scope  = 'prototype';
